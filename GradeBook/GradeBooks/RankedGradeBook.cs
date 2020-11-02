@@ -15,22 +15,29 @@ namespace GradeBook.GradeBooks
         {
             if(Students.Count < 5) 
             {
-                throw new InvalidOperationException();
+                throw new InvalidOperationException("Ranked grading requires at least 5 students.");
             }
 
-            if(averageGrade > 80)
+            var percentGrade = averageGrade * 0.2 / 100;
+
+            if(percentGrade <= averageGrade)
             {
                 return 'A';
             }
 
-            if (averageGrade > 61 && averageGrade < 79)
+            else if (percentGrade * 2 <= averageGrade)
             {
                 return 'B';
             }
 
-            if (averageGrade > 41 && averageGrade < 59)
+            else if (percentGrade * 3 <= averageGrade)
             {
                 return 'C';
+            }
+
+            else if (percentGrade * 4 <= averageGrade)
+            {
+                return 'D';
             }
             return 'F';
         }
